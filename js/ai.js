@@ -2,7 +2,6 @@ function aiSmart() {
 	return (aiQ+Math.random() > aiQ+(CUSTOMER*Math.random())/CUSTOMER);
 }
 function aiLogic (o) {
-	if (GAME_OVER) o.target = null;
 	var x = o.x,
 		y = o.y,
 		attackers = o.attackers,
@@ -21,7 +20,8 @@ function aiLogic (o) {
 			var options = [{x: randomInt(x-100, x+100), y: randomInt(y-100, y+100)}, (player.alive ? player : backup[randomInt(0, backup.length)]), attackers[randomInt(0, atkLen)]];
 			target = options[randomInt(0, 3)];
 		}
-	
+		
+		target = null;
 		if (!!target) {
 			o.target = target;
 			var data = resolveVelocities(o, target);
